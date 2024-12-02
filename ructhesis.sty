@@ -10,6 +10,7 @@
 \newif\if@withsupervisor
 \newif\if@withscore
 \newif\if@withdate
+\newif\if@withtableoffigures
 
 % All defaults to true
 \@withcodetrue
@@ -22,6 +23,7 @@
 \@withsupervisortrue
 \@withscoretrue
 \@withdatetrue
+\@withtableoffigurestrue
 
 \DeclareOption{no-code}{
   \@withcodefalse
@@ -52,6 +54,9 @@
 }
 \DeclareOption{no-date}{
   \@withdatefalse
+}
+\DeclareOption{no-tableoffigures}{
+  \@withtableoffiguresfalse
 }
 
 \ProcessOptions\relax
@@ -249,9 +254,11 @@
   \renewcommand\listfigurename{插\ 图}
   \renewcommand\listtablename{表\ 格}
   \oldtoc
-  \newpage
+  \if@withtableoffigures
   \listoffigures
   \listoftables
+  \newpage
+  \fi
   \cfoot{}
 }
 
